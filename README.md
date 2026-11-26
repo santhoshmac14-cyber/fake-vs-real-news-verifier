@@ -1,38 +1,23 @@
 # Fake vs Real News Verifier
 
-A Streamlit app that classifies pasted headlines and articles as Fake or Real using TF-IDF and logistic regression. Its newsroom-style interface shows confidence bars, a suggested news topic, and the words or phrases that influenced the result.
+A Streamlit app that classifies pasted headlines and articles as Fake or Real using TF-IDF and logistic regression.
 
-> This academic project looks for writing patterns in its training dataset. It does not independently check sources or verify current events. Model scores are estimates, not proof.
+## Run in GitHub Codespaces
 
-## What the app shows
+1. Open this repository on GitHub and choose Code, then Codespaces, then Create codespace on main.
+2. Wait for Python and the required packages to install.
+3. Choose Terminal, then New Terminal.
+4. Run: streamlit run app.py --server.address 0.0.0.0 --server.port 8501
+5. Open the forwarded port 8501 link.
 
-- Fake and Real model scores as visual bars.
-- A suggested topic such as Politics, World News, Business, Health, Technology, Science, Sports, Entertainment, or Environment.
-- Key words and short phrases that influenced the Fake/Real prediction.
+Stop the Codespace when you finish. Codespaces uses your account's monthly included usage first.
 
-Topic suggestions use simple keyword matching. They are separate from the trained Fake/Real model.
+## About the app
 
-## How the model works
+The app uses TF-IDF and logistic regression to estimate whether a pasted headline or article resembles the Fake or Real examples in the training dataset. It shows model confidence scores, a suggested topic, and influential words or phrases. Topic suggestions use simple keyword matching.
 
-1. The preparation script combines each article title and body and uses the source file name as its label.
-2. The training script splits the data into 80% training and 20% evaluation articles.
-3. TF-IDF turns single words and two-word phrases into weighted numbers.
-4. Logistic regression learns patterns in those numbers that relate to Fake and Real labels.
-5. The script evaluates and saves the model in models/fake_real_model.joblib.
+This academic project does not independently check sources or verify current events. Scores are estimates, not proof.
 
-The recorded run reached 99.0% accuracy on a held-back split from this same dataset. That result does not establish accuracy on current or unrelated news.
+## Dataset and model
 
-## Dataset
-
-Download Fake.csv and True.csv from the [Kaggle Fake and Real News Dataset](https://www.kaggle.com/datasets/clmentbisaillon/fake-and-real-news-dataset). Place them in data/raw/. Dataset files are excluded from this public repository.
-
-## Run locally
-
-From the project folder, install the packages and run:
-
-    python3 -m pip install -r requirements.txt
-    python3 src/prepare_data.py
-    python3 src/train_model.py
-    streamlit run app.py
-
-The app needs models/fake_real_model.joblib. To make a new model, download the two CSV files first and run the preparation and training scripts.
+The model is already included in models/fake_real_model.joblib, so it can run without uploading the large CSV files. Download Fake.csv and True.csv from the Kaggle Fake and Real News Dataset if you want to prepare and train the model again. Dataset files are not included in this public repository.
