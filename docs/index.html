@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#081525">
+  <meta name="description" content="A classroom news text classifier using TF-IDF and logistic regression.">
+  <title>Newsroom | Fake vs Real Verifier</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar"><a class="brand" href="#top"><span class="brand-icon">N</span> THE NEWSROOM <span class="brand-divider">/</span> ANALYSIS DESK</a><span class="status"><i></i> TEXT PATTERN ANALYSIS</span></header>
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy"><p class="eyebrow">A classroom NLP project</p><h1>Fake vs Real<br><span>News Verifier</span></h1><p class="intro">Explore how a text model reads a news story. Paste a headline or article to see its estimate, likely topic, and the phrases that influenced it.</p><a class="scroll-link" href="#analyzer">↓ &nbsp; GO TO ANALYSIS</a></div>
+        <div class="hero-picture" role="img" aria-label="Newsroom broadcast studio"><div class="picture-tag">NEWSROOM · LIVE DESK</div><div class="picture-caption">Reading the language behind the headline.</div></div>
+      </section>
+      <section class="disclaimer"><span>ⓘ</span><p>This project looks for patterns from its training dataset. It does not check sources or confirm current events. Scores are model estimates, not proof.</p></section>
+      <section class="analysis" id="analyzer">
+        <div class="section-heading"><div><p class="eyebrow">01 / INPUT</p><h2>Paste a story</h2></div><span class="section-note">HEADLINE OR ARTICLE</span></div>
+        <label class="visually-hidden" for="news-text">Paste a headline or article</label>
+        <textarea id="news-text" maxlength="30000" placeholder="Paste a news headline or article here..."></textarea>
+        <div class="input-footer"><span id="char-count">0 / 30,000 characters</span><button id="analyze-button" type="button">Analyze story <span>→</span></button></div>
+        <p class="error" id="error" role="alert" hidden></p>
+        <p class="loading" id="loading">Loading the classifier for the first time…</p>
+      </section>
+      <section class="results" id="results" hidden aria-live="polite">
+        <div class="section-heading"><div><p class="eyebrow">02 / MODEL OUTPUT</p><h2>Analysis desk</h2></div><span class="section-note">ESTIMATED CLASSIFICATION</span></div>
+        <div class="result-grid">
+          <article class="result-card prediction-card"><p class="card-label">MODEL PREDICTION</p><p class="prediction" id="prediction">—</p><p class="subtext">Based on learned word and phrase patterns</p></article>
+          <article class="result-card topic-card"><p class="card-label">SUGGESTED TOPIC</p><p class="topic" id="topic">—</p><p class="subtext">Suggested with simple keyword matching</p></article>
+        </div>
+        <article class="result-card scores-card"><p class="card-label">MODEL SCORES</p><div class="score-line"><div><span>Fake</span><strong id="fake-label">—</strong></div><div class="bar"><span id="fake-bar"></span></div></div><div class="score-line"><div><span>Real</span><strong id="real-label">—</strong></div><div class="bar"><span id="real-bar"></span></div></div><p class="subtext">The scores show the model’s relative estimates for these two classes.</p></article>
+        <article class="result-card terms-card"><p class="card-label">PHRASES THAT INFLUENCED THE PREDICTION</p><div class="terms" id="terms"></div><p class="subtext">These are words or two-word phrases in the text that pushed the model toward its displayed result.</p></article>
+      </section>
+      <footer><span>FAKE VS REAL NEWS VERIFIER</span><span>TF-IDF + LOGISTIC REGRESSION · CLASS PROJECT</span></footer>
+    </main>
+  </div>
+  <script src="scripts/app.js"></script>
+</body>
+</html>
